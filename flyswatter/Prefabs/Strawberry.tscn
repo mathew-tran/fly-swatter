@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://67yyn6lktaye"]
+
+[ext_resource type="Texture2D" uid="uid://ct5687coi6c1r" path="res://Art/Strawberry.png" id="1_4tpx8"]
+[ext_resource type="Script" uid="uid://x2mficw0pd5v" path="res://Scripts/Strawberry.gd" id="2_gnrl6"]
+[ext_resource type="Script" uid="uid://dd5dpg3q2hmtw" path="res://Scripts/Components/HealthComponent.gd" id="3_s2oao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2oao"]
+size = Vector2(40, 40)
+
+[sub_resource type="Animation" id="Animation_s2oao"]
+resource_name = "nibbled"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.164061, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3vkl2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wovwi"]
+_data = {
+&"RESET": SubResource("Animation_3vkl2"),
+&"nibbled": SubResource("Animation_s2oao")
+}
+
+[node name="Strawberry" type="Sprite2D" groups=["Strawberry"]]
+texture = ExtResource("1_4tpx8")
+script = ExtResource("2_gnrl6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_s2oao")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_s2oao")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wovwi")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

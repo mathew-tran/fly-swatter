@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://ccbqdicpvkgvw"]
+
+[ext_resource type="Texture2D" uid="uid://d352q28jql1fi" path="res://Art/Fly.png" id="1_imyrd"]
+[ext_resource type="Script" uid="uid://csmehpcbpp6i8" path="res://Scripts/Flies/Fly.gd" id="2_by3dn"]
+[ext_resource type="Script" uid="uid://dd5dpg3q2hmtw" path="res://Scripts/Components/HealthComponent.gd" id="3_cc27f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc27f"]
+atlas = ExtResource("1_imyrd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_572hq"]
+atlas = ExtResource("1_imyrd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ddp0l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc27f")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_572hq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_by3dn"]
+
+[sub_resource type="Animation" id="Animation_by3dn"]
+resource_name = "hit"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.11),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cc27f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_572hq"]
+_data = {
+&"RESET": SubResource("Animation_cc27f"),
+&"hit": SubResource("Animation_by3dn")
+}
+
+[node name="Fly" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ddp0l")
+script = ExtResource("2_by3dn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_by3dn")
+
+[node name="HitTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_572hq")
+}
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_cc27f")
+MaxHealth = 3
+
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
