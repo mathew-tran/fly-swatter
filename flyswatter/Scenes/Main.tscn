@@ -1,32 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvuejj0sfqw4v"]
+[gd_scene load_steps=5 format=3 uid="uid://dvuejj0sfqw4v"]
 
 [ext_resource type="PackedScene" uid="uid://67yyn6lktaye" path="res://Prefabs/Strawberry.tscn" id="1_kln2b"]
+[ext_resource type="Script" uid="uid://q8joi15xmmia" path="res://Scripts/Game.gd" id="1_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://bwunhcihnbbgq" path="res://Prefabs/Player.tscn" id="1_r150o"]
-[ext_resource type="PackedScene" uid="uid://ccbqdicpvkgvw" path="res://Prefabs/Flies/Fly.tscn" id="1_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://bha5tadieudnf" path="res://Prefabs/EndRoundUI.tscn" id="4_rgh2o"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D" groups=["Game"]]
+script = ExtResource("1_pbw6q")
 
 [node name="Strawberry" parent="." instance=ExtResource("1_kln2b")]
 position = Vector2(130, 92)
 
-[node name="Flies" type="Node2D" parent="."]
-
-[node name="Fly" parent="Flies" instance=ExtResource("1_rgh2o")]
-position = Vector2(42, 66)
-
-[node name="Fly2" parent="Flies" instance=ExtResource("1_rgh2o")]
-position = Vector2(296, 86)
-
-[node name="Fly3" parent="Flies" instance=ExtResource("1_rgh2o")]
-position = Vector2(86, 159)
-
-[node name="Fly4" parent="Flies" instance=ExtResource("1_rgh2o")]
-position = Vector2(157, -13)
-
-[node name="Fly5" parent="Flies" instance=ExtResource("1_rgh2o")]
-position = Vector2(31, -68)
-
-[node name="Fly6" parent="Flies" instance=ExtResource("1_rgh2o")]
-position = Vector2(282, -77)
+[node name="Bugs" type="Node2D" parent="." groups=["Bugs"]]
 
 [node name="Player" parent="." instance=ExtResource("1_r150o")]
+
+[node name="Effects" type="Node2D" parent="." groups=["Effects"]]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EndRoundUI" parent="CanvasLayer" instance=ExtResource("4_rgh2o")]

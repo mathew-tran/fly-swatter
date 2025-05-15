@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcrgrqcg5pm5j"]
+
+[ext_resource type="Script" uid="uid://cov37psidaukl" path="res://Scripts/Abilities/Ability_Damage.gd" id="1_fgs61"]
+
+[node name="AbilityDamage" type="Node2D"]
+script = ExtResource("1_fgs61")
+metadata/_custom_type_script = "uid://cov37psidaukl"

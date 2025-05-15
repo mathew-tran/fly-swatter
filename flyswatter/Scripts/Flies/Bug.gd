@@ -1,5 +1,7 @@
 extends AnimatedSprite2D
 
+class_name Bug
+
 var Speed = 10
 
 enum STATE {
@@ -9,12 +11,15 @@ enum STATE {
 }
 var CurrentState = STATE.MOVING
 
+signal Dead
+
 func _ready() -> void:
 	$HealthComponent.Death.connect(OnDeath)
 	
 func OnDeath():
 	play("dead")
 	CurrentState = STATE.DEAD
+	Dead.emit()
 	
 func _process(delta: float) -> void:
 	match CurrentState:
@@ -31,6 +36,7 @@ func Hit(damage):
 	$HitTimer.start()
 	$AnimationPlayer.play("hit")
 	$HealthComponent.TakeDamage(damage)
+	Helper.AddText(str(damage) , global_position, true)
 
 
 func _on_hit_timer_timeout() -> void:

@@ -12,9 +12,10 @@ func _input(event: InputEvent) -> void:
 			$AnimationPlayer.play("slap")
 
 func Land():
+	$CPUParticles2D.restart()
 	$CPUParticles2D.emitting = true
 	var flies = $HitArea.get_overlapping_areas()
 	for fly in flies:
-		fly.get_parent().Hit(Damage)
+		fly.get_parent().Hit(Damage + randi() % 3)
 		
 	

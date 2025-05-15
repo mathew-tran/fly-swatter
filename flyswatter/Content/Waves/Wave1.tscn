@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpbjsfr1fohxb"]
+
+[ext_resource type="Script" uid="uid://b5rlu7k7pgb0a" path="res://Scripts/Flies/BugGroup.gd" id="1_oq8s8"]
+[ext_resource type="PackedScene" uid="uid://ccbqdicpvkgvw" path="res://Prefabs/Flies/Bug.tscn" id="2_pyj85"]
+
+[node name="Flies" type="Node2D"]
+script = ExtResource("1_oq8s8")
+
+[node name="Fly" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(42, 66)
+
+[node name="Fly2" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(-59, 282)
+
+[node name="Fly7" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(-16, 294)
+
+[node name="Fly8" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(37, 304)
+
+[node name="Fly9" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(123, 307)
+
+[node name="Fly10" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(284, 321)
+
+[node name="Fly11" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(197, 311)
+
+[node name="Fly3" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(86, 159)
+
+[node name="Fly4" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(157, -13)
+
+[node name="Fly5" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(31, -68)
+
+[node name="Fly6" parent="." instance=ExtResource("2_pyj85")]
+position = Vector2(282, -77)

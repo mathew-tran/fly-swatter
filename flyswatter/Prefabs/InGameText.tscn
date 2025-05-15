@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvwm2g71evunm"]
+
+[ext_resource type="Script" uid="uid://c0r5mqyue21j5" path="res://Scripts/InGameText.gd" id="1_sn7yq"]
+
+[sub_resource type="Animation" id="Animation_ptmve"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sn7yq"]
+resource_name = "animate"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -14)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ptmve"]
+_data = {
+&"RESET": SubResource("Animation_ptmve"),
+&"animate": SubResource("Animation_sn7yq")
+}
+
+[node name="InGameText" type="Node2D"]
+script = ExtResource("1_sn7yq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="Control"]
+modulate = Color(2.88785e-06, 0.683498, 0.881329, 1)
+layout_mode = 0
+offset_left = -18.0
+offset_top = -11.0
+offset_right = 22.0
+offset_bottom = 12.0
+text = "3"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -12.0
+offset_right = 21.0
+offset_bottom = 11.0
+text = "3"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ptmve")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

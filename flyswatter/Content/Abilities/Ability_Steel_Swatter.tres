@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=4 format=3 uid="uid://j7jr34htd2jr"]
+
+[ext_resource type="Texture2D" uid="uid://cf2chdpc6pva2" path="res://Art/UI/Abilities/BaseAbility.png" id="1_e6i11"]
+[ext_resource type="Script" uid="uid://c6cqgj1ppfh5i" path="res://Content/AbilityData.gd" id="1_hs8u4"]
+[ext_resource type="PackedScene" uid="uid://dcrgrqcg5pm5j" path="res://Prefabs/AbilityObjects/AbilityObject_Steel_Swatter.tscn" id="2_kikj1"]
+
+[resource]
+script = ExtResource("1_hs8u4")
+AbilityName = "Steel Swatter"
+AbilityPrice = 3
+AbilityImage = ExtResource("1_e6i11")
+AbilityObject = ExtResource("2_kikj1")
+metadata/_custom_type_script = "uid://c6cqgj1ppfh5i"

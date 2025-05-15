@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwunhcihnbbgq"]
+[gd_scene load_steps=10 format=3 uid="uid://bwunhcihnbbgq"]
 
 [ext_resource type="Texture2D" uid="uid://cj32ur7owpunf" path="res://Art/Target.png" id="1_b43ah"]
 [ext_resource type="Script" uid="uid://hxcsits4371r" path="res://Scripts/Player.gd" id="2_shmu5"]
 [ext_resource type="Texture2D" uid="uid://dhmo0xgs7eaag" path="res://Art/Swatter.png" id="3_vxq8l"]
+[ext_resource type="Script" uid="uid://labtcdj4aadb" path="res://Scripts/Abilities/AbilityHolder.gd" id="4_vxq8l"]
 
 [sub_resource type="Curve" id="Curve_kln2b"]
 _limits = [0.0, 87.23, 0.0, 1.0]
@@ -111,7 +112,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_b43ah"]
 radius = 14.1421
 
-[node name="Player" type="Sprite2D"]
+[node name="Player" type="Sprite2D" groups=["Player"]]
 texture = ExtResource("1_b43ah")
 script = ExtResource("2_shmu5")
 
@@ -143,3 +144,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 shape = SubResource("CircleShape2D_b43ah")
+
+[node name="Abilities" type="Node2D" parent="."]
+script = ExtResource("4_vxq8l")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce7wdhdfvh8p5"]
+
+[ext_resource type="PackedScene" uid="uid://ccbqdicpvkgvw" path="res://Prefabs/Flies/Bug.tscn" id="1_cxghr"]
+[ext_resource type="Script" uid="uid://b5rlu7k7pgb0a" path="res://Scripts/Flies/BugGroup.gd" id="1_r3id4"]
+
+[node name="Flies" type="Node2D"]
+script = ExtResource("1_r3id4")
+
+[node name="Fly" parent="." instance=ExtResource("1_cxghr")]
+position = Vector2(42, 66)
+
+[node name="Fly2" parent="." instance=ExtResource("1_cxghr")]
+position = Vector2(296, 86)
+
+[node name="Fly3" parent="." instance=ExtResource("1_cxghr")]
+position = Vector2(86, 159)
+
+[node name="Fly4" parent="." instance=ExtResource("1_cxghr")]
+position = Vector2(157, -13)
+
+[node name="Fly5" parent="." instance=ExtResource("1_cxghr")]
+position = Vector2(31, -68)
+
+[node name="Fly6" parent="." instance=ExtResource("1_cxghr")]
+position = Vector2(282, -77)

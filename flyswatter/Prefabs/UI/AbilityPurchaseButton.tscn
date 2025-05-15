@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://be0dvrvbes50o"]
+
+[ext_resource type="Texture2D" uid="uid://cf2chdpc6pva2" path="res://Art/UI/Abilities/BaseAbility.png" id="1_pm5rk"]
+[ext_resource type="Script" uid="uid://m82wk3y02gs3" path="res://Scripts/UI/AbilityPurchaseButton.gd" id="1_ykety"]
+[ext_resource type="Resource" uid="uid://j7jr34htd2jr" path="res://Content/Abilities/Ability_Steel_Swatter.tres" id="2_qp5hc"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(80, 60)
+script = ExtResource("1_ykety")
+AbilityDataRef = ExtResource("2_qp5hc")
+
+[node name="AbilityLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 80.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 10
+text = "Ability Name"
+horizontal_alignment = 1
+
+[node name="AbilityImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 62.0
+offset_bottom = 56.0
+texture = ExtResource("1_pm5rk")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
