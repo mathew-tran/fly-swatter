@@ -2,12 +2,13 @@ extends Ability
 
 class_name AbilityDamage
 
-func _ready() -> void:
-	Implement()
+var Damage = 3
 	
 func Implement():
-	Finder.GetPlayer().Damage += 3
+	Finder.GetPlayer().Damage += Damage
 
 func Destroy():
-	Finder.GetPlayer().Damage -= 3
+	Finder.GetPlayer().Damage -= Damage
 	
+func GetInfo():
+	return "Increase Damage by " + str(Damage)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dks2si1kiym20"]
+
+[ext_resource type="Script" uid="uid://djxwxol8s2elp" path="res://Scripts/UI/AbilitiesUI.gd" id="1_p125a"]
+[ext_resource type="PackedScene" uid="uid://cuiv7vpsh4e0h" path="res://Prefabs/UI/AbilityUI.tscn" id="1_v885y"]
+
+[node name="AbilitiesUI" type="HBoxContainer"]
+offset_left = 2.0
+offset_top = 169.0
+offset_right = 98.0
+offset_bottom = 189.0
+script = ExtResource("1_p125a")
+
+[node name="AbilityUI" parent="." instance=ExtResource("1_v885y")]
+layout_mode = 2

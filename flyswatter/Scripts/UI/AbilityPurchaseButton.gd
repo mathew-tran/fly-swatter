@@ -11,11 +11,30 @@ enum PURCHASE_STATE {
 
 var CurrentState = PURCHASE_STATE.PURCHASEABLE
 
+var AbilityInstance : Ability
+
 func _ready() -> void:
 	Update()
+	AbilityInstance = AbilityDataRef.AbilityObject.instantiate()
+	add_child(AbilityInstance)
+	
+	Finder.GetAbilities().UpdateAbilities.connect(OnUpdateAbilities)
+	
+func OnUpdateAbilities():
+	if CurrentState == PURCHASE_STATE.SOLD:
+		return
+	if Finder.GetAbilities().CanAddAbility() == false:
+		CurrentState = PURCHASE_STATE.NO_SPACE
+	else:
+		CurrentState = PURCHASE_STATE.PURCHASEABLE
+	Update()
+	
+func ForceUpdate(newState : PURCHASE_STATE):
+	CurrentState = newState
 	
 func Update():
 	$StatusPanel.visible = false
+	
 	if CurrentState != PURCHASE_STATE.PURCHASEABLE:
 		$StatusPanel.visible = true
 		match CurrentState:
@@ -38,8 +57,18 @@ func _on_button_up() -> void:
 	match CurrentState:
 		PURCHASE_STATE.PURCHASEABLE:
 			if AbilityDataRef.CanPurchase():
-				pass
 				CurrentState = PURCHASE_STATE.SOLD
 				Finder.GetAbilities().AddAbility(AbilityDataRef)
+				AbilityInstance.queue_free()
+				Finder.GetInfoBox().HideText()
 	Update()
 	release_focus()
+
+
+func _on_mouse_entered() -> void:
+	if is_instance_valid(AbilityInstance):
+		Finder.GetInfoBox().ShowText(AbilityInstance.GetInfo(), global_position)
+
+
+func _on_mouse_exited() -> void:
+	Finder.GetInfoBox().HideText()

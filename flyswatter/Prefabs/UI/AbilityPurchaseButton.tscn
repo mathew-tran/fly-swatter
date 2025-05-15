@@ -5,26 +5,30 @@
 [ext_resource type="Resource" uid="uid://j7jr34htd2jr" path="res://Content/Abilities/Ability_Steel_Swatter.tres" id="2_qp5hc"]
 
 [node name="Button" type="Button"]
-custom_minimum_size = Vector2(80, 60)
+custom_minimum_size = Vector2(40, 30)
 script = ExtResource("1_ykety")
 AbilityDataRef = ExtResource("2_qp5hc")
 
 [node name="AbilityLabel" type="Label" parent="."]
 layout_mode = 0
-offset_top = 5.0
-offset_right = 80.0
-offset_bottom = 28.0
-theme_override_font_sizes/font_size = 10
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 6
 text = "Ability Name"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="AbilityImage" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 0
-offset_left = 22.0
-offset_top = 16.0
-offset_right = 62.0
-offset_bottom = 56.0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 30.0
+offset_bottom = 29.0
 texture = ExtResource("1_pm5rk")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="StatusPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -44,8 +48,12 @@ offset_top = -11.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 9
 text = "SOLD"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

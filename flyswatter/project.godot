@@ -25,6 +25,7 @@ Definitions="*res://Scripts/Autoload/Definitions.gd"
 
 window/size/viewport_width=256
 window/size/viewport_height=192
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [input]

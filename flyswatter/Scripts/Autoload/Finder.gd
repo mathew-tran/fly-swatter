@@ -5,6 +5,9 @@ func GetPlayer() -> Player:
 	
 func GetShop() -> Shop:
 	return get_tree().get_nodes_in_group("Shop")[0]
+
+func GetInfoBox() -> InfoBox:
+	return get_tree().get_nodes_in_group("InfoBox")[0]
 	
 func GetBugs() -> Node2D:
 	var bugs = get_tree().get_nodes_in_group("Bugs")[0]

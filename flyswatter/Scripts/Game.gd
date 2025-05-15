@@ -9,11 +9,25 @@ var CurrentWave : BugGroup
 signal RoundEnded 
 signal RoundStarted
 
+enum GAME_STATE {
+	IN_GAME,
+	IN_SHOP
+}
 var bFirstWave = true
+
+var CurrentState = GAME_STATE.IN_GAME
+
+signal GameStateUpdate(currentState)
 
 func _ready() -> void:
 	Waves = Helper.GetAllFilePaths("res://Content/Waves/")
 	SpawnNextWave()
+	
+func IsInGame():
+	return CurrentState == GAME_STATE.IN_GAME
+
+func IsInShop():
+	return CurrentState == GAME_STATE.IN_SHOP
 	
 func SpawnNextWave():
 	
@@ -23,7 +37,10 @@ func SpawnNextWave():
 		
 		
 	if bFirstWave == false:
+		CurrentState = GAME_STATE.IN_SHOP
+		GameStateUpdate.emit(CurrentState)
 		await Finder.GetShop().Complete
+		
 	
 	if is_instance_valid(CurrentWave):
 		CurrentWave.queue_free()
@@ -39,7 +56,8 @@ func SpawnNextWave():
 		RoundStarted.emit()
 		
 	bFirstWave = false
-	
+	CurrentState = GAME_STATE.IN_GAME
+	GameStateUpdate.emit(CurrentState)
 
 func OnWaveComplete():
 	SpawnNextWave()
