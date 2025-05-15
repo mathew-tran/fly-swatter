@@ -11,7 +11,6 @@ signal RoundStarted
 
 var bFirstWave = true
 
-
 func _ready() -> void:
 	Waves = Helper.GetAllFilePaths("res://Content/Waves/")
 	SpawnNextWave()
@@ -23,6 +22,9 @@ func SpawnNextWave():
 		await Finder.GetEndRoundUI().EndRoundAnimFinished
 		
 		
+	if bFirstWave == false:
+		await Finder.GetShop().Complete
+	
 	if is_instance_valid(CurrentWave):
 		CurrentWave.queue_free()
 		
@@ -44,8 +46,9 @@ func OnWaveComplete():
 
 func KillAllBugs():
 	var bugs = Finder.GetBugs()
-	for bug in bugs.get_children():
-		bug.Hit(1000)
+	if bugs:
+		for bug in bugs.get_children():
+			bug.Hit(1000)
 
 func _input(event: InputEvent) -> void:
 	

@@ -5,6 +5,7 @@ class_name EndRoundUI
 signal EndRoundAnimFinished
 
 func _ready() -> void:
+	$AnimationPlayer.play("RESET")
 	Finder.GetGame().RoundEnded.connect(OnRoundedEnded)
 	Finder.GetGame().RoundStarted.connect(OnRoundStarted)
 

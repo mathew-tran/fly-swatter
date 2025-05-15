@@ -1,10 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bha5tadieudnf"]
+[gd_scene load_steps=7 format=3 uid="uid://bha5tadieudnf"]
 
 [ext_resource type="Script" uid="uid://pojrx4a05251" path="res://Scripts/EndRoundUI.gd" id="1_hnpde"]
-[ext_resource type="PackedScene" uid="uid://be0dvrvbes50o" path="res://Prefabs/UI/AbilityPurchaseButton.tscn" id="2_816by"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kln2b"]
-bg_color = Color(0, 0, 0, 1)
+[ext_resource type="PackedScene" uid="uid://bja2g2wmeuxqv" path="res://Prefabs/UI/Shop.tscn" id="2_816by"]
 
 [sub_resource type="Animation" id="Animation_hnpde"]
 length = 0.001
@@ -18,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -24)]
+"values": [Vector2(0, -215)]
 }
 
 [sub_resource type="Animation" id="Animation_hxvin"]
@@ -30,14 +27,15 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.46, 0.63, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.466667, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -24), Vector2(0, 0), Vector2(0, 0), Vector2(0, 192)]
+"values": [Vector2(0, -192), Vector2(0, -192), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_816by"]
 resource_name = "leave"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -45,10 +43,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 192), Vector2(0, 400)]
+"values": [Vector2(0, 0), Vector2(0, 192)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_816by"]
@@ -61,7 +59,8 @@ _data = {
 [node name="EndRoundUI" type="Panel" groups=["EndRoundUI"]]
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -24.0
+offset_top = -215.0
+offset_bottom = -191.0
 grow_horizontal = 2
 script = ExtResource("1_hnpde")
 
@@ -69,32 +68,23 @@ script = ExtResource("1_hnpde")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_top = 192.0
+offset_bottom = 215.0
 grow_horizontal = 2
 text = "WAVE COMPLETE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Shop" type="Panel" parent="."]
-custom_minimum_size = Vector2(256, 192)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -192.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_kln2b")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Shop"]
+[node name="Shop" parent="." instance=ExtResource("2_816by")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-alignment = 1
-
-[node name="Button" parent="Shop/HBoxContainer" instance=ExtResource("2_816by")]
-layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_right = 256.0
+offset_bottom = 192.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

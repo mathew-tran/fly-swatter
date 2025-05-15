@@ -145,5 +145,5 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 shape = SubResource("CircleShape2D_b43ah")
 
-[node name="Abilities" type="Node2D" parent="."]
+[node name="Abilities" type="Node2D" parent="." groups=["Abilities"]]
 script = ExtResource("4_vxq8l")

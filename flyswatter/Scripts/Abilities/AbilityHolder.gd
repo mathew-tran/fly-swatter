@@ -4,7 +4,8 @@ class_name AbilityHolder
 
 var MaxAbilityAmount = 5
 
-func AddAbility(ability : Ability):
+func AddAbility(abilityData : AbilityData):
+	var ability = abilityData.AbilityObject.instantiate()
 	add_child(ability)
 	ability.Implement()
 	
